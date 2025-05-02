@@ -25,6 +25,8 @@ interface AnalysisResult {
   isRedFlag: boolean;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 const RedFlagDetector = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -41,7 +43,7 @@ const RedFlagDetector = () => {
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:3000/api/analyze', {
+      const response = await fetch(`${API_URL}/api/analyze`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

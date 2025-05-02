@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 export function ProfileAnalyzer() {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export function ProfileAnalyzer() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:3000/api/analyze', {
+      const response = await fetch(`${API_URL}/api/analyze`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

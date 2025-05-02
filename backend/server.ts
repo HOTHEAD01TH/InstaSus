@@ -1,18 +1,22 @@
-import * as dotenv from 'dotenv';
-// Load environment variables before any other imports
-dotenv.config();
-
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { analyzeProfile } from './geminiService.js';
 import { fetchInstagramData } from './instagramService.js';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Configure CORS to allow requests from frontend
+// Configure CORS to allow requests from both development and production domains
 app.use(cors({
-  origin: ['http://localhost:8080', 'https://redflagdetector.vercel.app','https://instasus.vercel.app'],
+  origin: [
+    'http://localhost:5173',
+    'https://instasus.vercel.app',
+    'https://instasus-git-main-hothead01th.vercel.app',
+    'https://instasus-hothead01th.vercel.app'
+  ],
   methods: ['GET', 'POST'],
   credentials: true
 }));

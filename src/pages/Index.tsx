@@ -8,15 +8,17 @@ import { FeatureCard } from "@/components/ui/feature-card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Flag, Search, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   
   const handleSubmit = (username: string) => {
     setUsername(username);
-    // Redirect to redflag page with the username
-    window.location.href = `/redflag?username=${username}`;
+    // Use navigate instead of window.location
+    navigate(`/redflag?username=${encodeURIComponent(username)}`);
   };
 
   const containerVariants = {

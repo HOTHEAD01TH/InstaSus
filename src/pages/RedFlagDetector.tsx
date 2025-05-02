@@ -8,6 +8,7 @@ import { ProfileCard } from "@/components/ui/profile-card";
 import { ResultCard } from "@/components/ui/result-card";
 import { useToast } from "@/hooks/use-toast";
 import { Flag } from "lucide-react";
+import { useEffect } from 'react';
 
 interface ProfileData {
   username: string;
@@ -88,12 +89,12 @@ const RedFlagDetector = () => {
     }
   };
 
-  // If a username was provided in the URL, analyze it automatically
-  useState(() => {
+  // Replace useState with useEffect
+  useEffect(() => {
     if (initialUsername) {
-      handleAnalysis(initialUsername);  // Changed from analyzeProfile to handleAnalysis
+      handleAnalysis(initialUsername);
     }
-  });
+  }, [initialUsername]); // Add dependency array
 
   return (
     <Layout hideFooter={true}>

@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Configure CORS to allow requests from frontend
 app.use(cors({
-  origin: ['http://localhost:8080', 'https://redlagdetector.vercel.app'],
+  origin: ['http://localhost:8080', 'https://redflagdetector.vercel.app','https://instasus.vercel.app'],
   methods: ['GET', 'POST'],
   credentials: true
 }));

@@ -9,62 +9,53 @@ interface ProfileCardProps {
   followers?: number;
   following?: number;
   imageUrl?: string;
+  posts?: number;
 }
 
-export function ProfileCard({ 
-  username, 
-  name, 
-  bio, 
-  followers, 
-  following,
-  imageUrl
-}: ProfileCardProps) {
+export function ProfileCard({ username, followers, following, bio, posts, imageUrl }: ProfileCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Card className="overflow-hidden border border-gray-200 shadow-sm">
-        <CardHeader className="pb-2 pt-6">
-          <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-gray-200">
-              {imageUrl ? (
-                <img 
-                  src={imageUrl} 
-                  alt={`${username}'s profile`} 
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="h-full w-full bg-gray-100 flex items-center justify-center text-gray-400">
-                  @{username.charAt(0)}
-                </div>
-              )}
-            </div>
-            <div>
-              <CardTitle className="text-xl">{name || `@${username}`}</CardTitle>
-              <CardDescription className="text-sm text-gray-500">@{username}</CardDescription>
-            </div>
+    <div className="bg-white p-6 rounded-lg border shadow-sm">
+      <div className="text-center mb-4">
+        {imageUrl ? (
+          <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-2 border-gray-200">
+            <img 
+              src={imageUrl} 
+              alt={`${username}'s profile`} 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = `https://ui-avatars.com/api/?name=${username}&size=200`;
+              }}
+            />
           </div>
-        </CardHeader>
-        <CardContent>
-          {bio && (
-            <div className="mb-4">
-              <p className="text-sm text-gray-700">{bio}</p>
-            </div>
-          )}
-          <div className="flex items-center justify-between border-t pt-3">
-            <div className="text-center">
-              <p className="text-sm font-medium">Followers</p>
-              <p className="text-lg font-semibold">{followers?.toLocaleString() || "N/A"}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm font-medium">Following</p>
-              <p className="text-lg font-semibold">{following?.toLocaleString() || "N/A"}</p>
-            </div>
+        ) : (
+          <div className="w-24 h-24 mx-auto mb-3 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-2xl border-2 border-gray-200">
+            {username.charAt(0).toUpperCase()}
           </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        )}
+        <h2 className="text-xl font-semibold">@{username}</h2>
+      </div>
+      
+      <div className="grid grid-cols-3 gap-4 text-center mb-4">
+        <div>
+          <div className="font-semibold">{followers > 0 ? followers.toLocaleString() : 'N/A'}</div>
+          <div className="text-sm text-gray-600">Followers</div>
+        </div>
+        <div>
+          <div className="font-semibold">{following > 0 ? following.toLocaleString() : 'N/A'}</div>
+          <div className="text-sm text-gray-600">Following</div>
+        </div>
+        <div>
+          <div className="font-semibold">{posts > 0 ? posts.toLocaleString() : 'N/A'}</div>
+          <div className="text-sm text-gray-600">Posts</div>
+        </div>
+      </div>
+      
+      {bio && (
+        <div className="text-sm text-gray-700 text-center">
+          {bio}
+        </div>
+      )}
+    </div>
   );
 }

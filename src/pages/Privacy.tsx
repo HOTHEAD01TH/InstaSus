@@ -15,7 +15,7 @@ const Privacy = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">1. Introduction</h2>
             <p>
-              This Privacy Policy describes how InstaInsight ("we", "us", or "our") collects, uses, 
+              This Privacy Policy describes how InstaSus ("we", "us", or "our") collects, uses, 
               and shares your information when you use our website and services.
             </p>
             
@@ -71,7 +71,7 @@ const Privacy = () => {
             <h2 className="text-xl font-semibold mt-6 mb-3">8. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us at:
-              privacy@instainsight.example.com
+              privacy@InstaSus.example.com
             </p>
           </div>
         </div>

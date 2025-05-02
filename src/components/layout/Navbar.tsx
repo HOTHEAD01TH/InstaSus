@@ -24,11 +24,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
-            className="h-8 w-8 rounded-full bg-instagram-gradient"
+            className="h-8 w-8"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-          />
-          <span className="text-lg font-bold bg-clip-text text-transparent bg-instagram-gradient">InstaInsight</span>
+          >
+            <img src="/instagram.png" alt="InstaSus Logo" className="w-full h-full" />
+          </motion.div>
+          <span className="text-lg font-bold bg-clip-text text-transparent bg-instagram-gradient">InstaSus</span>
         </Link>
 
         {/* Desktop Navigation */}

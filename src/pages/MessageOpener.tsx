@@ -34,42 +34,38 @@ const MessageOpener = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [messageResult, setMessageResult] = useState<MessageResult | null>(null);
 
-  const analyzeProfile = async (username: string) => {
+  const handleAnalysis = async (username: string) => {
     setLoading(true);
     setProfileData(null);
     setMessageResult(null);
 
     try {
-      // This is a mock implementation. In a real application, you would:
-      // 1. Call an API to scrape the Instagram data
-      // 2. Send that data to Gemini AI for analysis
+      const response = await fetch('http://localhost:3000/api/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze profile');
+      }
+
+      const analysis = await response.json();
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // Simulate profile data retrieval
-      const mockProfileData: ProfileData = {
+      setProfileData({
         username,
-        name: username.charAt(0).toUpperCase() + username.slice(1),
-        bio: "Travel enthusiast 🌍 | Food lover 🍕 | Dog parent 🐶 | Based in NYC",
-        followers: Math.floor(Math.random() * 10000),
-        following: Math.floor(Math.random() * 1000),
-      };
-      setProfileData(mockProfileData);
-
-      // Simulate AI analysis delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Simulate AI-generated message openers
-      const mockMessages: MessageResult = {
-        messages: [
-          "Hey there! I noticed you're also a dog parent in NYC. Any favorite dog-friendly spots you'd recommend? My Golden Retriever is always looking for new adventures!",
-          "Your travel photos are amazing! I'm planning a trip to Italy next month - I noticed you were there recently. Any hidden gems you discovered that aren't in the typical guidebooks?",
-          "That pizza place you tagged in your last post looks incredible! Is it as good as it looks? Always on the hunt for great food recommendations in the city."
-        ],
-        explanation: "These openers are personalized based on shared interests found in the profile bio (travel, food, dogs, NYC location) and would likely lead to engaging conversations."
-      };
-      setMessageResult(mockMessages);
+        name: username,
+        bio: analysis.bio,
+        followers: analysis.followers,
+        following: analysis.following,
+      });
+      
+      setMessageResult({
+        messages: [analysis.messageOpener],
+        explanation: analysis.reasoning
+      });
       
       toast({
         title: "Generation Complete",
@@ -98,12 +94,12 @@ const MessageOpener = () => {
   // If a username was provided in the URL, analyze it automatically
   useState(() => {
     if (initialUsername) {
-      analyzeProfile(initialUsername);
+      handleAnalysis(initialUsername);  // Changed from analyzeProfile to handleAnalysis
     }
   });
 
   return (
-    <Layout>
+    <Layout hideFooter={true}>
       <section className="bg-gradient-to-b from-blue-50 to-white py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-8">
@@ -127,7 +123,7 @@ const MessageOpener = () => {
 
           <div className="flex justify-center mb-12">
             <InstagramInput 
-              onSubmit={analyzeProfile} 
+              onSubmit={handleAnalysis}
               loading={loading}
               placeholder="Enter Instagram username..."
             />

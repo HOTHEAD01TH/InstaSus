@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# InstaSus - Instagram Profile Analyzer
 
-## Project info
+<div align="center">
+  <img src="/public/instagram.png" alt="InstaSus Logo" width="120" />
+  <h3>AI-Powered Instagram Profile Analysis</h3>
+</div>
 
-**URL**: https://lovable.dev/projects/40b3f446-d23e-4441-a16f-d9cb498c46a3
+## 🚀 Features
 
-## How can I edit this code?
+- **Red Flag Detection**: Analyze Instagram profiles for potential red flags using advanced AI
+- **Message Opener Generator**: Create personalized conversation starters based on profile data
+- **Profile Analysis**: Get detailed insights about follower ratios, posting patterns, and bio content
+- **Real-time Processing**: Instant analysis using Google's Gemini AI technology
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- Frontend:
+  - React + TypeScript
+  - Tailwind CSS
+  - Shadcn UI
+  - Framer Motion
+  - Vite
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/40b3f446-d23e-4441-a16f-d9cb498c46a3) and start prompting.
+- Backend:
+  - Node.js
+  - Express
+  - Google Gemini AI
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚦 Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or higher)
+- npm or yarn
+- Google Gemini API Key
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone the repository:
+```bash
+git clone https://github.com/HOTHEAD01TH/InstaSus.git
+cd InstaSus
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies for both frontend and backend:
+```bash
+# Install frontend dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install backend dependencies
+cd backend
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. Set up environment variables:
+   - Create a `.env` file in the backend directory
+   - Add your Gemini API key:
+```env
+GEMINI_API_KEY=your_api_key_here
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Start the development servers:
+
+```bash
+# Start backend server (in backend directory)
+npm run dev
+
+# Start frontend server (in root directory)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🌟 Usage
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Open your browser and navigate to `http://localhost:5173`
+2. Enter an Instagram username to analyze
+3. View the analysis results including:
+   - Red/Green flags
+   - Profile insights
+   - Suggested conversation starters
 
-**Use GitHub Codespaces**
+## 🤝 Contributing
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
 
-## What technologies are used for this project?
+## 📝 License
 
-This project is built with:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🙏 Acknowledgments
 
-## How can I deploy this project?
+Made with ❤️ by [Zaid](https://github.com/HOTHEAD01TH)
 
-Simply open [Lovable](https://lovable.dev/projects/40b3f446-d23e-4441-a16f-d9cb498c46a3) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For more information or issues, please visit [our GitHub repository](https://github.com/HOTHEAD01TH/InstaSus).
+        

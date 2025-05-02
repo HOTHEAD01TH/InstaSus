@@ -35,51 +35,40 @@ const RedFlagDetector = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
 
-  const analyzeProfile = async (username: string) => {
+  const handleAnalysis = async (username: string) => {
     setLoading(true);
     setProfileData(null);
     setResult(null);
 
     try {
-      // This is a mock implementation. In a real application, you would:
-      // 1. Call an API to scrape the Instagram data
-      // 2. Send that data to Gemini AI for analysis
+      const response = await fetch('http://localhost:3000/api/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze profile');
+      }
+
+      const analysis = await response.json();
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // Simulate profile data retrieval
-      const mockProfileData: ProfileData = {
+      setProfileData({
         username,
-        name: username.charAt(0).toUpperCase() + username.slice(1),
-        bio: "This is a simulated profile bio. In a real app, this would be scraped from Instagram.",
-        followers: Math.floor(Math.random() * 10000),
-        following: Math.floor(Math.random() * 1000),
-      };
-      setProfileData(mockProfileData);
+        name: username,
+        bio: analysis.bio,
+        followers: analysis.followers,
+        following: analysis.following,
+      });
 
-      // Simulate AI analysis delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Simulate AI analysis result
-      const isRedFlag = Math.random() > 0.5;
-      const mockResult: AnalysisResult = {
-        isRedFlag,
-        redFlags: [
-          "Inconsistent posting behavior",
-          "Significantly more following than followers",
-          "Bio contains potentially concerning phrases"
-        ],
-        greenFlags: [
-          "Authentic engagement with followers",
-          "Shares varied and interesting content",
-          "Positive language in captions"
-        ],
-        summary: isRedFlag
-          ? "Based on the analysis, there are several concerning patterns in this profile that may indicate potential red flags."
-          : "This profile appears largely positive with only minor concerns noted."
-      };
-      setResult(mockResult);
+      setResult({
+        isRedFlag: analysis.flag === 'red',
+        redFlags: analysis.redFlags || ['No red flags detected'],
+        greenFlags: analysis.greenFlags || ['No green flags detected'],
+        summary: analysis.reasoning
+      });
       
       toast({
         title: "Analysis Complete",
@@ -100,12 +89,12 @@ const RedFlagDetector = () => {
   // If a username was provided in the URL, analyze it automatically
   useState(() => {
     if (initialUsername) {
-      analyzeProfile(initialUsername);
+      handleAnalysis(initialUsername);  // Changed from analyzeProfile to handleAnalysis
     }
   });
 
   return (
-    <Layout>
+    <Layout hideFooter={true}>
       <section className="bg-gradient-to-b from-red-50 to-white py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-8">
@@ -129,7 +118,7 @@ const RedFlagDetector = () => {
 
           <div className="flex justify-center mb-12">
             <InstagramInput 
-              onSubmit={analyzeProfile} 
+              onSubmit={handleAnalysis}
               loading={loading}
               placeholder="Enter Instagram username to analyze..."
             />

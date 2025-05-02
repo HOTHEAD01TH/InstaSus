@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-4">
               <div className="h-8 w-8 rounded-full bg-instagram-gradient" />
               <span className="text-lg font-bold bg-clip-text text-transparent bg-instagram-gradient">
-                InstaInsight
+                InstaSus
               </span>
             </div>
             <p className="text-gray-600 max-w-md">
@@ -41,7 +41,11 @@ const Footer = () => {
         </div>
         
         <div className="border-t mt-8 pt-8 text-center text-gray-500 text-sm">
-          <p>&copy; {currentYear} InstaInsight. All rights reserved.</p>
+          <p>&copy; {currentYear} InstaSus. All rights reserved.</p>
+          {/* Add this before the closing section tag */}
+<div className="text-center text-gray-600 mt-12">
+  Made with ❤️ by <a href="https://github.com/HOTHEAD01TH" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Zaid</a>
+</div>
         </div>
       </div>
     </footer>

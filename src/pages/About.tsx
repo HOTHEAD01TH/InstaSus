@@ -6,19 +6,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const About = () => {
   return (
-    <Layout>
+    <Layout hideFooter={true}>
       <section className="py-12 md:py-20 bg-gradient-to-b from-purple-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto"> {/* Increased max width */}
             <motion.div 
               className="text-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">About InstaInsight</h1>
+              <div className="flex justify-center mb-6">
+                <img src="/instagram.png" alt="InstaSus" className="w-16 h-16" />
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-instagram-gradient">
+                About InstaSus
+              </h1>
               <p className="text-xl text-gray-700">
-                Leveraging AI to help you make better connections on Instagram
+                Your AI-Powered Instagram Profile Analyzer
               </p>
             </motion.div>
 
@@ -31,7 +36,7 @@ const About = () => {
               <Card>
                 <CardContent className="pt-6">
                   <p className="mb-4">
-                    InstaInsight is an innovative tool designed to help users navigate 
+                    InstaSus is an innovative tool designed to help users navigate 
                     the social landscape of Instagram with confidence and clarity.
                   </p>
                   
@@ -43,7 +48,7 @@ const About = () => {
                   
                   <p>
                     Whether you're looking to vet a potential date, network with industry peers, 
-                    or simply start meaningful conversations, InstaInsight provides the insights 
+                    or simply start meaningful conversations, InstaSus provides the insights 
                     you need to make informed decisions.
                   </p>
                 </CardContent>
@@ -103,7 +108,7 @@ const About = () => {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Is this app safe to use?</AccordionTrigger>
                   <AccordionContent>
-                    Yes! InstaInsight only analyzes publicly available information from Instagram 
+                    Yes! InstaSus only analyzes publicly available information from Instagram 
                     profiles. We don't store any user data permanently, and all analyses are 
                     performed securely using advanced encryption.
                   </AccordionContent>
@@ -130,7 +135,7 @@ const About = () => {
                 <AccordionItem value="item-4">
                   <AccordionTrigger>Do I need an Instagram account to use this?</AccordionTrigger>
                   <AccordionContent>
-                    No, you don't need an Instagram account to use InstaInsight. You only need 
+                    No, you don't need an Instagram account to use InstaSus. You only need 
                     to know the username of the profile you want to analyze.
                   </AccordionContent>
                 </AccordionItem>
@@ -138,9 +143,16 @@ const About = () => {
             </motion.div>
           </div>
         </div>
+        {/* Add this before the closing section tag */}
+<div className="text-center text-gray-600 mt-12">
+  Made with ❤️ by <a href="https://github.com/HOTHEAD01TH" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Zaid</a>
+</div>
       </section>
     </Layout>
   );
 };
 
 export default About;
+
+
+

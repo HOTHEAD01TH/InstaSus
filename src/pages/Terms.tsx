@@ -15,13 +15,13 @@ const Terms = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">1. Agreement</h2>
             <p>
-              By accessing or using InstaInsight, you agree to be bound by these Terms of Service. 
+              By accessing or using InstaSus, you agree to be bound by these Terms of Service. 
               If you disagree with any part of the terms, you may not access the service.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">2. Services</h2>
             <p>
-              InstaInsight provides AI-powered analysis of Instagram profiles to detect potential 
+              InstaSus provides AI-powered analysis of Instagram profiles to detect potential 
               red flags and generate conversation starters. Our services are for informational 
               purposes only.
             </p>
@@ -48,7 +48,7 @@ const Terms = () => {
             <h2 className="text-xl font-semibold mt-6 mb-3">5. Intellectual Property</h2>
             <p>
               All content on this service, including text, graphics, logos, and software, 
-              is the property of InstaInsight or its content suppliers and is protected by 
+              is the property of InstaSus or its content suppliers and is protected by 
               intellectual property laws.
             </p>
             
@@ -61,7 +61,7 @@ const Terms = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">7. Limitation of Liability</h2>
             <p>
-              In no event shall InstaInsight, nor its directors, employees, partners, agents, 
+              In no event shall InstaSus, nor its directors, employees, partners, agents, 
               suppliers, or affiliates, be liable for any indirect, incidental, special, 
               consequential, or punitive damages.
             </p>
@@ -76,7 +76,7 @@ const Terms = () => {
             <h2 className="text-xl font-semibold mt-6 mb-3">9. Contact Us</h2>
             <p>
               If you have any questions about these Terms, please contact us at:
-              terms@instainsight.example.com
+              terms@InstaSus.example.com
             </p>
           </div>
         </div>

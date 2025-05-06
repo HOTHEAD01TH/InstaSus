@@ -11,6 +11,8 @@
 - **Message Opener Generator**: Create personalized conversation starters based on profile data
 - **Profile Analysis**: Get detailed insights about follower ratios, posting patterns, and bio content
 - **Real-time Processing**: Instant analysis using Google's Gemini AI technology
+- **Data Persistence**: All analyzed profiles are stored in MongoDB for faster repeat analysis
+- **Reliable Scraping**: Uses Apify's robust Instagram scraper to reliably fetch profile data
 
 ## 🛠️ Tech Stack
 
@@ -25,6 +27,8 @@
   - Node.js
   - Express
   - Google Gemini AI
+  - Apify Instagram Scraper
+  - MongoDB
 
 ## 🚦 Getting Started
 
@@ -33,6 +37,8 @@
 - Node.js (v18 or higher)
 - npm or yarn
 - Google Gemini API Key
+- Apify API Key
+- MongoDB Connection URI
 
 ### Installation
 
@@ -54,9 +60,11 @@ npm install
 
 3. Set up environment variables:
    - Create a `.env` file in the backend directory
-   - Add your Gemini API key:
+   - Add your API keys and MongoDB connection string:
 ```env
-GEMINI_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+APIFY_API_KEY=your_apify_api_key_here
+MONGODB_URI=your_mongodb_connection_string_here
 ```
 
 4. Start the development servers:
@@ -78,6 +86,13 @@ npm run dev
    - Profile insights
    - Suggested conversation starters
 
+## 💾 Data Storage
+
+The application stores analyzed Instagram profiles in MongoDB for:
+- Faster repeat analysis of previously viewed profiles
+- Preserving all post captions for comprehensive data analysis
+- Reducing API calls to external services
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
@@ -92,8 +107,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 Made with ❤️ by [Zaid](https://github.com/HOTHEAD01TH)
-
----
-
-For more information or issues, please visit [our GitHub repository](https://github.com/HOTHEAD01TH/InstaSus).
-        

@@ -16,7 +16,7 @@ interface ProfileData {
   bio?: string;
   followers?: number;
   following?: number;
-  imageUrl?: string;
+  profilePicUrlHD?: string;
 }
 
 interface AnalysisResult {

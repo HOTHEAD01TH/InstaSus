@@ -30,6 +30,11 @@ if (!apiKey) {
 const ai = new GoogleGenAI({ apiKey: apiKey });
 
 async function analyzeRedFlags(profileData: InstagramMetadata): Promise<{ flag: 'red' | 'green'; reasoning: string; redFlags: string[]; greenFlags: string[] }> {
+  // Format captions for the prompt
+  const captionsText = profileData.captions && profileData.captions.length > 0 
+    ? profileData.captions.map(caption => `- "${caption}"`).join('\n')
+    : "No captions available";
+
   const prompt = `
     Analyze this Instagram profile for red and green flags.
     Provide a balanced assessment based on these specific criteria:
@@ -39,13 +44,16 @@ async function analyzeRedFlags(profileData: InstagramMetadata): Promise<{ flag: 
     Following: ${profileData.following}
     Posts: ${profileData.posts}
     Bio: ${profileData.bio}
+    
+    Recent Captions:
+    ${captionsText}
 
     Assessment Criteria:
     RED FLAG indicators (multiple needed to mark as RED):
     - Extremely disproportionate follower ratios (e.g., 100:1)
     - Suspicious or misleading bio content
     - Very low post count with high followers
-    - Signs of automated/bot behavior
+    - Signs of toxic captions or content
     - Explicit content or scam indicators
 
     GREEN FLAG indicators:
@@ -53,6 +61,8 @@ async function analyzeRedFlags(profileData: InstagramMetadata): Promise<{ flag: 
     - Consistent posting history
     - Clear, authentic bio
     - Normal engagement patterns
+    - No obvious signs of manipulation or manipulation attempts
+    - good captions
 
     Respond in the following format only:
     Flag: [RED/GREEN]
@@ -61,6 +71,8 @@ async function analyzeRedFlags(profileData: InstagramMetadata): Promise<{ flag: 
     - Point 1
     - Point 2
     - Point 3
+    - Point 4
+    - Point 5
 
     Red Flags:
     - [List specific red flags, or "No significant red flags detected" if none]

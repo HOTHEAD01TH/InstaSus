@@ -46,7 +46,7 @@ app.post('/api/analyze', async (req, res) => {
       following: profileData.following,
       posts: profileData.posts,
       bio: profileData.bio,
-      imageUrl: profileData.imageUrl
+      profilePicUrlHD: profileData.profilePicUrlHD
     });
   } catch (error) {
     console.error('Analysis error:', error);
